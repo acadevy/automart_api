@@ -1,0 +1,23 @@
+{
+  "name": "automart_api",
+  "version": "1.0.0",
+  "description": "An API to buy and sell cars online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acadevy/automart_api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acadevy/automart_api/issues"
+  },
+  "homepage": "https://github.com/acadevy/automart_api#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.18"
+  }
+}
