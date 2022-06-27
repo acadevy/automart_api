@@ -45,7 +45,16 @@ const userSchema = mongoose.Schema({
         required:true,
         default: false,
         type: Boolean
-    }
+    },
+
+    tokens: [
+        {
+            token: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 })
 
 
