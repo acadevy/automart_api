@@ -20,7 +20,9 @@ const flagSchema = mongoose.schema({
 })
 
 
+const Flag = mongoose.model('Flag',flagSchema);
 
+module.exports = Flag;
 
 
 
