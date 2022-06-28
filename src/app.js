@@ -1,14 +1,16 @@
 const express = require('express');
 require('./db/mongoose');
 require("dotenv").config();
-const userRoute = require('./routes/userRoutes');
+const user_route = require('./routes/userRoutes');
+const car_sale_route = require("./routes/carRoutes");
 
 
 
 const app = express();
 
 app.use(express.json());
-app.use(userRoute);
+app.use(user_route);
+app.use(car_sale_route)
 
 
 app.use((req, res) => {

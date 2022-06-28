@@ -17,9 +17,9 @@ const carSchema = mongoose.Schema({
         enum: ["used","new"]
     },
     Status: {
-        Type: String,
+        type: String,
+        enum: ["available","sold"],
         default: "available",
-        enum: ["available","sold"]
     },
     price: {
         type: Number,

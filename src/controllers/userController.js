@@ -18,7 +18,7 @@ exports.loginUser = async(req,res)=>{
       req.body.password
     );
     const token = await user.generateAuthToken();
-    res.send({ user, token });
+    res.send({ user});
   } catch (error) {
     res.status(400).send(error);
   }
