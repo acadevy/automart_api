@@ -2,13 +2,14 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
+
 
 const userSchema = mongoose.Schema({
     email:{
         type:String,
         required:true,
         trim:true,
+        unique: true,
         lowercase: true,
         validate(value){
             if(!validator.isEmail(value)){
@@ -31,7 +32,7 @@ const userSchema = mongoose.Schema({
         required:true,
         trim:true,
         validate(value){
-            if(!value.toLowerCase().includes('password')){
+            if(value.toLowerCase().includes('password')){
                 throw new Error('Password cannot contain password');
             }
         }
