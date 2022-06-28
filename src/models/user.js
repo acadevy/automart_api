@@ -45,7 +45,16 @@ const userSchema = mongoose.Schema({
         required:true,
         default: false,
         type: Boolean
-    }
+    },
+
+    tokens: [
+        {
+            token: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 })
 
 
@@ -67,6 +76,15 @@ userSchema.statics.findByCredentials = async (email, password) => {
   };
 
 
+  userSchema.methods.generateAuthToken = async function() {
+    const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET);
+  
+    this.tokens = this.tokens.concat({ token });
+    await this.save();
+    return token;
+  };
+
+
   // Hash the plain text password before saving
 userSchema.pre('save', async function(next) {
     if (this.isModified('password')) {
@@ -74,3 +92,9 @@ userSchema.pre('save', async function(next) {
     }
     next();
   });
+
+
+
+const User = mongoose.model('User',userSchema);
+
+module.exports = User;
