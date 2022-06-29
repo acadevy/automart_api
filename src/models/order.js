@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const orderSchema = mongoose.schema({
+const orderSchema = mongoose.Schema({
     buyer: {
         type: mongoose.Types.ObjectId,
         required:true,
@@ -11,8 +11,12 @@ const orderSchema = mongoose.schema({
         required: true,
         ref: "Car"
     },
-    amount: {
-        type: float,
+    price: {
+        type:Number,
+        required: true
+    },
+    price_offered: {
+        type: Number,
         required: true,
     },
 
@@ -20,8 +24,12 @@ const orderSchema = mongoose.schema({
             type: String,
             enum: ["pending","accepted","rejected"]
     }
+},
+    {
+        timestamps: true
+    }
 
-})
+)
 
 
 const Order = mongoose.model('Order',orderSchema);
