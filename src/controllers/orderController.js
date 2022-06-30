@@ -55,10 +55,10 @@ exports.update_price = async(req,res)=>{
       
             updates.forEach(update => (order[update] = req.body[update]));
             await order.save();
-            res.status(200).json(order);
+            res.status(200).json({status:200,order});
        
         }
         catch(err){
-
+            res.status(404).json(err);
    }
 }

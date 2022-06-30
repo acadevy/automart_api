@@ -1,4 +1,5 @@
 const Car = require("../models/Car");
+const Order = require("../models/Order");
 
 exports.create_car_sale_ad = async(req,res) => {
     const car_sale_ad = new Car({
@@ -13,4 +14,27 @@ exports.create_car_sale_ad = async(req,res) => {
       res.status(400).json(error);
     }
 
+}
+
+exports.update_car_status = async(req,res)=>{
+  const {id} = req.params
+  try{
+    const get_car_ad = await Car.findById(id);
+    const get_order = await Order.findOne({car_id:id});
+    const car_price = get_car_ad.price;
+    const order_price = get_order.price_offered;
+    if(car_price === order_price){
+      get_car_ad.Status = "sold"
+      await get_car_ad.save();
+      res.status(200).json({
+        message: "Car status has been updated successfully."
+      })
+    }
+    
+    
+  }
+  catch(err){
+    res.status(404).json(err);
+  }
+  
 }
