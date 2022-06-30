@@ -26,13 +26,14 @@ exports.update_car_status = async(req,res)=>{
     if(car_price === order_price){
       get_car_ad.Status = "sold"
       await get_car_ad.save();
+      const data = get_car_ad;
       res.status(200).json({
-        message: "Car status has been updated successfully."
+        status: 200,
+        data
       })
     }
 
- 
-    }
+ }
   catch(err){
     res.status(404).json(err);
   }
@@ -49,7 +50,23 @@ exports.update_car_price = async(req,res)=>{
     }
     car.price =  updated_price;
     await car.save();
-    res.status(200).json({message:"Car price  has been updated successfully"});
+    const data = car
+    res.status(200).json({status: 200,
+      data});
+  }
+  catch(err){
+    res.status(404).json(err);
+  }
+}
+
+exports.get_a_car = async(req,res)=>{
+  const{id} = req.params
+  try{
+    const car = await Car.findById(id);
+    if(!car){
+      res.status(404).json({message: "car doesnot exist"});
+    }
+    res.status(200).json(car);
   }
   catch(err){
     res.status(404).json(err);
