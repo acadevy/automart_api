@@ -30,11 +30,28 @@ exports.update_car_status = async(req,res)=>{
         message: "Car status has been updated successfully."
       })
     }
-    
-    
-  }
+
+ 
+    }
   catch(err){
     res.status(404).json(err);
   }
   
+}
+
+exports.update_car_price = async(req,res)=>{
+      const id = req.params.id
+      const updated_price = req.body.price;
+  try{
+    const car = await Car.findById(id)
+    if(!car) {
+      res.status(404).json({message: "car_ad does not exist"});
+    }
+    car.price =  updated_price;
+    await car.save();
+    res.status(200).json({message:"Car price  has been updated successfully"});
+  }
+  catch(err){
+    res.status(404).json(err);
+  }
 }
