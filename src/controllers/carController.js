@@ -81,15 +81,39 @@ exports.get_a_car_byQuery = async(req,res)=>{
  
   try{
     const car = await Car.find({Status:status});
-    console.log(car);
     if(car.length < 1){
       res.status(404).json({message: "car does not exist"});
       }
       else{
-        res.status(200).json(car);
+        res.status(200).json({ status: 200,car});
       }
     }
   catch(err){
     res.status(404).json(err);
   }
+}
+
+exports.get_a_min_or_max_car = async(req,res) => {
+  
+  const query_values = Object.values(req.query);
+  const min_price = query_values[1];
+  const max_price = query_values[2];
+ try{
+  const data = await Car.find({Status:query_values[0],price:{$gte:min_price,$lte:max_price}});
+  if(data.length < 1){
+    res.status(404).json({message: "Your range doesnot exist"});
+  }
+  else{
+    res.status(200).json({
+      status:200,
+      data
+    })
+  }
+  
+
+ } catch(err){
+
+ }
+  
+
 }

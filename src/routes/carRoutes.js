@@ -8,5 +8,6 @@ router.patch('/car/:id/status',auth,carController.update_car_status);
 router.patch('/car/:id/price',auth,carController.update_car_price);
 router.get('/car/:id/',carController.get_a_car);
 router.get('/car/',carController.get_a_car_byQuery);
+router.get('/cars/',carController.get_a_min_or_max_car);
 
 module.exports = router;
