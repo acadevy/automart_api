@@ -63,11 +63,32 @@ exports.get_a_car = async(req,res)=>{
   const{id} = req.params
   try{
     const car = await Car.findById(id);
-    if(!car){
+    console.log(car);
+    if(car.length < 1){
       res.status(404).json({message: "car doesnot exist"});
+    } else{
+      res.status(200).json(car);
     }
-    res.status(200).json(car);
+   
   }
+  catch(err){
+    res.status(404).json(err);
+  }
+}
+
+exports.get_a_car_byQuery = async(req,res)=>{
+  const status=  Object.values(req.query);
+ 
+  try{
+    const car = await Car.find({Status:status});
+    console.log(car);
+    if(car.length < 1){
+      res.status(404).json({message: "car does not exist"});
+      }
+      else{
+        res.status(200).json(car);
+      }
+    }
   catch(err){
     res.status(404).json(err);
   }
