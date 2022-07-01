@@ -109,11 +109,28 @@ exports.get_a_min_or_max_car = async(req,res) => {
       data
     })
   }
-  
 
- } catch(err){
+  } catch(err){
 
  }
-  
+}
 
+exports.delete_a_car = async(req,res) =>{
+  try {
+    const car = await Car.findOneAndDelete({
+      _id: req.params.id,
+      owner: req.user._id
+    });
+
+    if (!car) {
+      res.status(404).send();
+    }
+
+    res.status(200).json({
+      status: 200,
+      message: "Car Ad successfully deleted"
+    });
+  } catch (error) {
+    res.status(500).send();
+  }
 }
