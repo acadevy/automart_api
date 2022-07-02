@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
 
-const flagSchema = mongoose.schema({
+const flagSchema = mongoose.Schema({
     car_id : {
         type: mongoose.Types.ObjectId,
-        required: true
+        required: true,
+        ref: "Car"
+    },
+    user_id : {
+        type: mongoose.Types.ObjectId,
+        required: true,
+        ref: "User"
     },
     reason : {
         type: String,
@@ -14,10 +20,12 @@ const flagSchema = mongoose.schema({
         type: String,
         required: true
     },
-    created_on: {
-        type: DateTime
-    }
-})
+    },
+    {
+        timestamps: true
+    },
+
+    )
 
 
 const Flag = mongoose.model('Flag',flagSchema);
