@@ -2,7 +2,6 @@ const Flag = require("../models/Flag");
 const Car = require("../models/Car");
 
 exports.register_flag = async(req,res)=>{
-    const {car_id,reason,description} = req.body;
     try{
       const flag = await new Flag({
         ...req.body,
