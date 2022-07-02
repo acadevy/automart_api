@@ -10,5 +10,6 @@ router.get('/car/:id/',carController.get_a_car);
 router.get('/car/',carController.get_a_car_byQuery);
 router.get('/cars/',carController.get_a_min_or_max_car);
 router.delete('/car/:id',auth,carController.delete_a_car);
+router.get('/cars/all',carController.get_all_car);
 
 module.exports = router;

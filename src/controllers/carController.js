@@ -134,3 +134,20 @@ exports.delete_a_car = async(req,res) =>{
     res.status(500).send();
   }
 }
+
+exports.get_all_car = async(req,res)=>{
+  try{
+    const data = await Car.find({});
+    if(!data){
+      res.status(404).json({
+        message: "Cars not available" });
+    }
+      res.status(200).json({status:200,data});
+      console.log(data.length);
+  }
+  catch(err){
+    res.status(404).json({
+      message: "Not found"
+    });
+  }
+}
