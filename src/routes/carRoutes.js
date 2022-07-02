@@ -13,6 +13,7 @@ router.delete('/car/:id',auth,carController.delete_a_car);
 router.get('/cars/all',carController.get_all_car);
 router.get('/carss/',carController.get_all_new_cars);
 router.get('/carsss', carController.get_all_used_cars);
+router.get('/carssss',carController.get_all_cars_by_a_manufacturer);
 
 
 module.exports = router;
