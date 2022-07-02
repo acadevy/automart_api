@@ -4,6 +4,7 @@ require("dotenv").config();
 const user_route = require('./routes/userRoutes');
 const car_sale_route = require("./routes/carRoutes");
 const order_route = require("./routes/orderRoutes");
+const flag_route = require("./routes/flagRoutes");
 
 
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(user_route);
 app.use(car_sale_route);
 app.use(order_route);
+app.use(flag_route);
 
 
 
