@@ -152,7 +152,25 @@ exports.get_all_car = async(req,res)=>{
   }
 }
 
-exports.get_car_by_state = async(req,res)=>{
+exports.get_all_new_cars = async(req,res)=>{
+  const data=  Object.values(req.query);
+ 
+  try{
+    const car = await Car.find({Status:data[0],State:data[1]});
+    if(car.length < 1){
+      res.status(404).json({message: "car does not exist"});
+      }
+      else{
+        res.status(200).json({ status: 200,car});
+        
+      }
+    }
+  catch(err){
+    res.status(404).json(err);
+  }
+}
+
+exports.get_all_used_cars = async(req,res)=>{
   const data=  Object.values(req.query);
  
   try{
